@@ -26,7 +26,8 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'dotenv-rails'
 gem 'faraday'
 gem 'rspotify'
-gem 'bootstrap-sass', '~> 3.3.4'
+# gem 'bootstrap-sass', '~> 3.3.4'
+# gem 'install_theme'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
