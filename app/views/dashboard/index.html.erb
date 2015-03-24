@@ -35,7 +35,7 @@
 						</header>
 						<p>OrbWeaver generates a playlist in your Spotify account for concerts that are going on sale in the next week. Not only will you be in the fold on current music, you'll never miss out on the opportunity to get tickets at face value.</p>
 					</div>
-					<%= link_to 'Generate Playlist', '#', class: "button special scrolly" %>
+					<%= link_to 'Generate Playlist', '/auth/spotify', class: "button special scrolly" %>
 					<a href="#two" class="goto-next scrolly">Next</a>
 				</div>
 			</section>
@@ -49,6 +49,9 @@
 							<h2>  <%=  %> </h2>
 						</header>
 						<p>The Orbweaver playlist has been added to your spotify account.</p>
+							<% if @spotify_user %>
+						<p> <%= @spotify_user.email %>
+							<% end %>
 						<ul class="icons-grid">
 							<li>
 								<span class="icon major fa-camera-retro"></span>
