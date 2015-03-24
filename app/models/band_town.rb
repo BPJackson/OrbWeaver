@@ -1,7 +1,5 @@
 class BandTown
 
-  require 'bandsintown'
-
   # def initialize
   #   @client = Bandsintown.app_id = 'orbweaver'
   #   @events = events = Bandsintown::Event.on_sale_soon({
@@ -18,8 +16,13 @@ class BandTown
      end
    end
 
-   def event_sale
-     response = @conn.get "/events/on_sale_soon.json", { app_id: 'ORBWEAVER' }
+   def denver_event_sales
+    response = @conn.get do |req|
+    req.url "http://api.bandsintown.com/events/on_sale_soon.json?location=Denver,CO"
+    req.params['app_id'] = ENV["BANDS_ID"]
+    end
      JSON.parse(response.body)
    end
+
+    
 end

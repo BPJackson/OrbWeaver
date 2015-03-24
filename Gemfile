@@ -27,7 +27,7 @@ gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
 
 gem 'dotenv-rails', :groups => [:development, :test]
-# gem 'faraday'
+gem 'faraday'
 # gem 'bootstrap-sass', '~> 3.3.4'
 # gem 'install_theme'
 
