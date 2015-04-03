@@ -21,8 +21,12 @@ class BandTown
     req.url "http://api.bandsintown.com/events/on_sale_soon.json?location=Denver,CO"
     req.params['app_id'] = ENV["BANDS_ID"]
     end
-     JSON.parse(response.body)
+     artists = JSON.parse(response.body)
+      artists.map do |show|
+      show["artists"].map do |artist|
+      artist["name"]
+      end
+      end
    end
 
-    
 end
