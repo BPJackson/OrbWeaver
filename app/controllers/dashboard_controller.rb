@@ -44,8 +44,7 @@ class DashboardController < ApplicationController
     @spotify_user = RSpotify::User.new(request.env['omniauth.auth'])
     @playlist = @spotify_user.create_playlist!('Orbweaver-Playlist')
     @spotify_user.follow(@playlist)
-    binding.pry
-    @playlist.add_tracks!(@all_top_tracks[0], position: 0)
+    @playlist.add_tracks!(@tracks_to_add, position: 0)
     end
 
    end
