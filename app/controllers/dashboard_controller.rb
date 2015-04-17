@@ -16,11 +16,15 @@ class DashboardController < ApplicationController
     @all_top_tracks = @artists_data.map do |artist|
       artist[0].top_tracks(:US)
     end
+    # @all_top_tracks = @all_top_tracks.delete_if {|elem| elem.flatten.empty? }
+    #
+    # @tracks_to_add = @all_top_tracks.map do |track|
+    #   track
+    # end
 
-    @tracks_to_add = @all_top_tracks.map do |track|
-      track[0]
-    end
-
+    # @all = @tracks_to_add.map do |track|
+    #   track
+    # end
 
     # @all_artist_tracks = @artists_data.each do |artist|
     #   artist[0].each do |a|
@@ -44,7 +48,7 @@ class DashboardController < ApplicationController
     @spotify_user = RSpotify::User.new(request.env['omniauth.auth'])
     @playlist = @spotify_user.create_playlist!('Orbweaver-Playlist')
     @spotify_user.follow(@playlist)
-    @playlist.add_tracks!(@tracks_to_add, position: 0)
+    @playlist.add_tracks!(@all_top_tracks[0], position: 0)
     end
 
    end
