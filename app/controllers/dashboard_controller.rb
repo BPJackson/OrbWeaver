@@ -13,9 +13,11 @@ class DashboardController < ApplicationController
 
     #deletes empty arrays in the larger array
     @artists_data = @artists_data.delete_if {|elem| elem.flatten.empty? }
+    #all top tracks for all of the artists
     @all_top_tracks = @artists_data.map do |artist|
       artist[0].top_tracks(:US)
     end
+    #attempt to get into the @all_top_tracks array and return one array of raw tracks, rather than an array of arrays.
     # @all_top_tracks = @all_top_tracks.delete_if {|elem| elem.flatten.empty? }
     #
     # @tracks_to_add = @all_top_tracks.map do |track|
@@ -48,7 +50,12 @@ class DashboardController < ApplicationController
     @spotify_user = RSpotify::User.new(request.env['omniauth.auth'])
     @playlist = @spotify_user.create_playlist!('Orbweaver-Playlist')
     @spotify_user.follow(@playlist)
-    @playlist.add_tracks!(@all_top_tracks[0], position: 0)
+      @all_top_tracks.each do |track|
+        @playlist.add_tracks!(track, position: 0)
+      end
+    # @playlist.add_tracks!(@all_top_tracks[0], position: 0)
+      # end
+    # @playlist.add_tracks!(@all_top_tracks.flatten, position: 0)
     end
 
    end
