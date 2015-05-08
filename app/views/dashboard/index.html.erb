@@ -10,11 +10,22 @@
 		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 		<meta name="description" content="" />
 		<meta name="keywords" content="" />
+
 		<script src="init.js"></script>
+		<script src="https://code.jquery.com/jquery-2.1.4.js"></script>
+
 		<noscript>
 		</noscript>
 	</head>
 	<body>
+		<% if @spotify_user %>
+			<script type="text/javascript">
+			$(function() {
+				$(document).scrollTop( $("#three").offset().top );
+			});
+
+			</script>
+		<% end %>
 
 		<!-- Header -->
 			<section id="header">
@@ -42,18 +53,18 @@
 			</section>
 
 		<!-- Two -->
+		<% if @spotify_user %>
 			<section id="two" class="main special">
 				<div class="container">
 					<span class="image fit primary"><%= image_tag("pic02.jpg") %></span>
 					<div class="content">
 							<h2>  <%=  %> </h2>
-						<% if @spotify_user %>
 						<header class="major">
 						<p><h2>Welcome, <%= @spotify_user.display_name %>!</h2></p>
 						</header>
+						<p> <%= image_tag(@spotify_user.images[0]["url"]) %></p>
 						<p>The Orbweaver playlist has been added to your spotify account.</p>
-						<% end %>
-						<ul class="icons-grid">
+						<!-- <ul class="icons-grid">
 							<li>
 								<span class="icon major fa-camera-retro"></span>
 								<h3>Magna Etiam</h3>
@@ -70,11 +81,13 @@
 								<span class="icon major fa-coffee"></span>
 								<h3>Sed Feugiat</h3>
 							</li>
-						</ul>
+						</ul> -->
 					</div>
 					<a href="#three" class="goto-next scrolly">Next</a>
 				</div>
 			</section>
+			<% end %>
+
 
 		<!-- Three -->
 			<section id="three" class="main special">
