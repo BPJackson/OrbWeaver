@@ -4,7 +4,7 @@ class DashboardController < ApplicationController
     @bandtown = BandTown.new
     # creates list of bands in town artists that go on sale next week for denver, as an array
     @bands_on_sale_soon = @bandtown.denver_event_sales.flatten.uniq
-
+    @events_list = @bandtown.denver_events.flatten.uniq
     #iterates through each band and returns an array of RSpotify artist objects. Each RSpotify artist is its own array.
     @artists_data = @bands_on_sale_soon.map do |artist|
     RSpotify::Artist.search("#{artist}", limit: 1, market: "US")

@@ -84,8 +84,9 @@
 						<header class="major">
 							<h2>Artists</h2>
 						</header>
-						<p><% @bands_on_sale_soon.each do |band| %> </p>
-							<%= band %>
+						<p><% @events_list.map do |event| %> </p>
+							<%= event["artists"][0]["name"] %>
+							<%= link_to "Buy Tickets", event["ticket_url"] %>
 							<% end %>
 					</div>
 					<a href="#footer" class="goto-next scrolly">Next</a>
