@@ -48,7 +48,7 @@ class DashboardController < ApplicationController
     # creates Spotify playlist upon callback
     if request.env['omniauth.auth']
     @spotify_user = RSpotify::User.new(request.env['omniauth.auth'])
-    @playlist = @spotify_user.create_playlist!('Orbweaver-Playlist')
+    @playlist = @spotify_user.create_playlist!("Orbweaver-Playlist through #{7.days.from_now.strftime("%m/%d")}")
     @spotify_user.follow(@playlist)
       @all_top_tracks.each do |track|
         @playlist.add_tracks!(track, position: 0)
