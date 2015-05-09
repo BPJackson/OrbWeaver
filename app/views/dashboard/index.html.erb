@@ -31,7 +31,11 @@ Template a modified version of Highlights by HTML5 UP
 			</div>
 			<%= link_to 'Generate Playlist', '/auth/spotify', class: "button special scrolly" %>
 			<p>Playlist for <strong><%= "#{Time.now.strftime("%m/%d")}" %></strong> through <strong><%= "#{7.days.from_now.strftime("%m/%d")}" %></strong></p>
+			<% if @spotify_user %>
 			<a href="#two" class="goto-next scrolly">Next</a>
+			<% else %>
+			<a href="#three" class="goto-next scrolly">Next</a>
+			<% end %>
 		</div>
 	</section>
 
