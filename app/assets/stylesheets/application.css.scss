@@ -377,7 +377,7 @@
          	html {
          		background-color:		$color-accent2-bg;
          		background-attachment:	fixed,						fixed;
-         		background-image:		url('overlay.png'),	url('bg.jpg');
+         		background-image:		url('bg.jpg'),	url('bg.jpg');
          		background-position:	top left,					center center;
          		background-repeat:		repeat,						none;
          		background-size:		auto,						cover;
@@ -917,16 +917,16 @@
          		display: inline-block;
          		position: relative;
 
-         		&:before {
-         			background: url('images/overlay.png');
-         			content: '';
-         			display: block;
-         			height: 100%;
-         			left: 0;
-         			position: absolute;
-         			top: 0;
-         			width: 100%;
-         		}
+         	// 	&:before {
+         	// 		background: url('images/overlay.png');
+         	// 		content: '';
+         	// 		display: block;
+         	// 		height: 100%;
+         	// 		left: 0;
+         	// 		position: absolute;
+         	// 		top: 0;
+         	// 		width: 100%;
+         	// 	}
 
          		img {
          			display: block;
