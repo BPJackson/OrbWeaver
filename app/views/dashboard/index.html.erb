@@ -32,10 +32,10 @@ Template a modified version of Highlights by HTML5 UP
 				<header class="major">
 					<h2>How</h2>
 				</header>
-				<p>OrbWeaver generates a playlist in your Spotify account for concerts that are going on sale in the next week. Not only will you be in the fold on current music, you'll never miss out on the opportunity to get tickets at face value.</p>
+				<p>OrbWeaver generates a playlist in your Spotify account for concerts that are happening next week. Not only will you be in the fold on current music, you'll never miss a show.</p>
 			</div>
 			<%= link_to 'Generate Playlist', '/auth/spotify', class: "button special scrolly" %>
-			<p>Playlist for <strong><%= "#{Time.now.strftime("%m/%d")}" %></strong> through <strong><%= "#{7.days.from_now.strftime("%m/%d")}" %></strong></p>
+			<p>Playlist for <strong><%= "#{7.days.from_now.strftime("%m/%d")}" %></strong> through <strong><%= "#{14.days.from_now.strftime("%m/%d")}" %></strong></p>
 			<% if @spotify_user %>
 			<a href="#two" class="goto-next scrolly">Next</a>
 			<% else %>
@@ -75,7 +75,7 @@ Template a modified version of Highlights by HTML5 UP
 			<div class="content">
 				<header class="major">
 					<h2>Artists</h2>
-					<p>Tickets to see these artists go on sale within the next week.</p>
+					<p>These shows are happening next week!</p>
 				</header>
 				<p><% @events_list.map do |event| %> </p>
 				<%= event["artists"][0]["name"] %>
