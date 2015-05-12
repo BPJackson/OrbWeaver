@@ -78,7 +78,7 @@ Template a modified version of Highlights by HTML5 UP
 					<p>These shows are happening next week!</p>
 				</header>
 				<% @events_list.map do |event| %>
-				<p><h2><%= event["artists"][0]["name"] %></h2></p>
+				<p><h3><%= event["artists"][0]["name"] %></h3></p>
 				<p class="venue"><%= event["venue"]["name"] %> </p>
 				<p><%= link_to "Info", event["ticket_url"], target: "_blank" %></p>
 				<% end %>
