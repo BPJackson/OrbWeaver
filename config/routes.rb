@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   root 'dashboard#index'
   get '/auth/spotify/callback', to: 'dashboard#index'
   post '/', to: 'dashboard#index'
+  get '/auth/spotify', as: 'spotify_auth'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

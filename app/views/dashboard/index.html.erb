@@ -34,12 +34,11 @@ Template a modified version of Highlights by HTML5 UP
 				</header>
 				<p>OrbWeaver generates a playlist in your Spotify account for concerts that are happening next week. Not only will you be in the fold on current music, you'll never miss a show.</p>
 				<%= form_tag "/" %>
-				<%= label_tag :search %>
+				<%= label_tag :search, "Current City" %>
 				<%= text_field_tag :search %>
-				<br>
-				<%= submit_tag "Your City" %>
+				<%= submit_tag "Update City", id: "update-city-btn" %>
 			</div>
-			<%= link_to 'Generate Playlist', '/auth/spotify', class: "button special scrolly" %>
+			<%= link_to 'Generate Playlist', spotify_auth_path(search: @city), class: "button special scrolly" %>
 			<p>Playlist for <strong><%= "#{7.days.from_now.strftime("%m/%d")}" %></strong> through <strong><%= "#{14.days.from_now.strftime("%m/%d")}" %></strong></p>
 
 			<% if @spotify_user %>
@@ -81,7 +80,7 @@ Template a modified version of Highlights by HTML5 UP
 			<div class="content">
 				<header class="major">
 					<h2>Artists</h2>
-					<p>These shows are happening next week!</p>
+					<p>These shows are happening in <%= @city %> next week!</p>
 				</header>
 				<% @events_list.map do |event| %>
 				<p><h3><%= event["artists"][0]["name"] %></h3></p>
