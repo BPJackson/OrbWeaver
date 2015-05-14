@@ -35,7 +35,7 @@ Template a modified version of Highlights by HTML5 UP
 				<p>OrbWeaver generates a playlist in your Spotify account for concerts that are happening next week. Not only will you be in the fold on current music, you'll never miss a show.</p>
 				<%= form_tag "/" %>
 				<%= label_tag :search, "Current City" %>
-				<%= text_field_tag :search %>
+				<%= text_field_tag :search, @city %>
 				<%= submit_tag "Update City", id: "update-city-btn" %>
 			</div>
 			<%= link_to 'Generate Playlist', spotify_auth_path(search: @city), class: "button special scrolly" %>
