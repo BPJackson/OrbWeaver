@@ -14,7 +14,6 @@ Template a modified version of Highlights by HTML5 UP
 	<script src="https://code.jquery.com/jquery-2.1.4.js"></script>
 </head>
 <body>
-	<!-- add in search box that passes city param -->
 	<!-- Header -->
 	<section id="header" class="main special">
 		<header class="major">
@@ -23,6 +22,14 @@ Template a modified version of Highlights by HTML5 UP
 		</header>
 		<a href="#one" class="goto-next scrolly"></a>
 	</section>
+
+	<% if params[:search] %>
+	<script type="text/javascript">
+	$(function() {
+		$(document).scrollTop( $("#one").offset().top );
+	});
+	</script>
+	<% end %>
 
 	<!-- One -->
 	<section id="one" class="main special">
