@@ -14,7 +14,7 @@ Template a modified version of Highlights by HTML5 UP
 	<script src="https://code.jquery.com/jquery-2.1.4.js"></script>
 </head>
 <body>
-
+	<!-- add in search box that passes city param -->
 	<!-- Header -->
 	<section id="header" class="main special">
 		<header class="major">
@@ -33,9 +33,15 @@ Template a modified version of Highlights by HTML5 UP
 					<h2>How</h2>
 				</header>
 				<p>OrbWeaver generates a playlist in your Spotify account for concerts that are happening next week. Not only will you be in the fold on current music, you'll never miss a show.</p>
+				<%= form_tag "/" %>
+				<%= label_tag :search %>
+				<%= text_field_tag :search %>
+				<br>
+				<%= submit_tag "Your City" %>
 			</div>
 			<%= link_to 'Generate Playlist', '/auth/spotify', class: "button special scrolly" %>
 			<p>Playlist for <strong><%= "#{7.days.from_now.strftime("%m/%d")}" %></strong> through <strong><%= "#{14.days.from_now.strftime("%m/%d")}" %></strong></p>
+
 			<% if @spotify_user %>
 			<a href="#two" class="goto-next scrolly">Next</a>
 			<% else %>
@@ -90,9 +96,6 @@ Template a modified version of Highlights by HTML5 UP
 	<!-- Footer -->
 	<section id="footer">
 		<div class="container">
-			<!-- <header class="major">
-			<h2>Get in touch</h2>
-		</header> -->
 	</div>
 		<footer>
 			<!-- <ul class="icons">
