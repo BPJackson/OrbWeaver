@@ -19,7 +19,7 @@ class BandTown
    def usa_events(location)
      response = @conn.get do |req|
       # location name needs to look like this: location=Denver,CO
-     req.url "/events/search?location=#{location}&radius=10&date=2015-05-19&per_page=49&format=json"
+     req.url "/events/search?location=#{location}&radius=10&date=2015-05-19&per_page=25&format=json"
      req.params['app_id'] = ENV["BANDS_ID"]
    end
     events = JSON.parse(response.body)
