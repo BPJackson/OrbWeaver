@@ -36,10 +36,13 @@ class DashboardController < ApplicationController
       @spotify_user = RSpotify::User.new(request.env['omniauth.auth'])
       @playlist = @spotify_user.create_playlist!("Orbweaver-Playlist through #{14.days.from_now.strftime("%m/%d")}")
       @spotify_user.follow(@playlist)
-      # binding.pry
+        @all_top_tracks.delete_if {|elem| elem.flatten.empty? }
         @all_top_tracks.each do |track|
-          #took position: 0 out of argument, add back in if isssue
+        # begin
           @playlist.add_tracks!(track)
+        # rescue
+        #   binding.pry
+        # end
         end
       end
 
