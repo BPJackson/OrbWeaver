@@ -38,7 +38,8 @@ class DashboardController < ApplicationController
       @spotify_user.follow(@playlist)
       # binding.pry
         @all_top_tracks.each do |track|
-          @playlist.add_tracks!(track, position: 0)
+          #took position: 0 out of argument, add back in if isssue
+          @playlist.add_tracks!(track)
         end
       end
 
