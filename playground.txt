@@ -1,4 +1,4 @@
-What @artists_data returns:
+What rspotify_artists_array returns:
 A big array with these arrays in it:
 [#<RSpotify::Artist:0x007f856ea4d5a8
    @external_urls={"spotify"=>"https://open.spotify.com/artist/3gdbcIdNypBsYNu3iiCjtN"},

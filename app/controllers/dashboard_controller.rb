@@ -1,50 +1,47 @@
 class DashboardController < ApplicationController
 
   def index
+    # checks the incomming params and sets the @city instance variable
     if params[:search]
       @city = params[:search]
     elsif request.env['omniauth.auth']
+    # pulls the search param out of the omniauth return
       @city = request.env["omniauth.params"]["search"]
     else
       @city = "Denver,CO"
     end
 
+    bandtown = BandTown.new
+    # creates an array of Bandsintown events next week for @city
+    @events_array = bandtown.usa_events(@city).flatten.uniq
+    # creates an array of artist names, generated from the @events_array
+    artist_list = @events_array.map do |event|
+      event["artists"][0]["name"]
+    end
 
-
-      @bandtown = BandTown.new
-      # creates list of bands in town artists that go on sale next week for denver, as an array
-      @events_array = @bandtown.usa_events(@city).flatten.uniq
-
-      @bands_on_sale_soon =  @events_array.map do |event|
-                               event["artists"][0]["name"]
-                             end
-
-      @events_list = @bandtown.usa_events(@city).flatten.uniq
-
-      #iterates through each band and returns an array of RSpotify artist objects. Each RSpotify artist is its own array.
-      @artists_data = @bands_on_sale_soon.map do |artist|
+    # iterates through each artist and returns an array of RSpotify artist objects. Each RSpotify artist is its own array.
+    rspotify_artists_array = artist_list.map do |artist|
       RSpotify::Artist.search("#{artist}", limit: 1, market: "US")
-      end
-      #deletes empty arrays in the larger array
-      @artists_data = @artists_data.delete_if {|elem| elem.flatten.empty? }
-      #all top tracks for all of the artists
-      @all_top_tracks = @artists_data.map do |artist|
-        artist[0].top_tracks(:US)
-      end
-      # creates Spotify playlist upon callback
-      if request.env['omniauth.auth']
+    end
+    # deletes empty arrays in the entire array
+    rspotify_artists_array = rspotify_artists_array.delete_if {|elem| elem.flatten.empty? }
+    # all top tracks for all of the RSpotify artists
+    all_top_tracks = rspotify_artists_array.map do |artist|
+      artist[0].top_tracks(:US)
+    end
+
+    # checks for callback Omniauth hash
+    if request.env['omniauth.auth']
       @spotify_user = RSpotify::User.new(request.env['omniauth.auth'])
-      @playlist = @spotify_user.create_playlist!("Orbweaver-Playlist through #{14.days.from_now.strftime("%m/%d")}")
-      @spotify_user.follow(@playlist)
-        @all_top_tracks.delete_if {|elem| elem.flatten.empty? }
-        @all_top_tracks.each do |track|
-        # begin
-          @playlist.add_tracks!(track)
-        # rescue
-        #   binding.pry
-        # end
-        end
+      playlist = @spotify_user.create_playlist!("Orbweaver-Playlist through #{14.days.from_now.strftime("%m/%d")}")
+      @spotify_user.follow(playlist)
+      # deletes empty arrays
+      all_top_tracks.delete_if {|elem| elem.flatten.empty? }
+      # adds tracks, one at a time, to the newly created Orbweaver playlist
+      all_top_tracks.each do |track|
+        playlist.add_tracks!(track)
       end
+    end
 
   end
 
