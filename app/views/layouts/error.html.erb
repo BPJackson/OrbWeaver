@@ -1,0 +1,36 @@
+<!DOCTYPE HTML>
+<!--
+Template a modified version of Highlights by HTML5 UP
+-->
+<html>
+<body>
+<head>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= stylesheet_link_tag "application", :media => "all" %>
+  <%= csrf_meta_tags %>
+  <%= stylesheet_link_tag "application", 'https://fonts.googleapis.com/css?family=Raleway:400,400italic,700,800', :media => "all" %>
+  <%= favicon_link_tag 'favicon.ico' %>
+
+	<title>OrbWeaver</title>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+	<meta name="description" content="" />
+	<meta name="keywords" content="" />
+	<noscript>
+	</noscript>
+
+	<!-- Header -->
+  <section id="one" class="main special">
+		<div class="container">
+			<span class="image fit primary"><%= image_tag('pic01.jpg') %></span>
+			<div class="content">
+				<header class="major">
+					<h2>Oops!</h2>
+				</header>
+				<p>We've encountered an error.</p>
+        <%= link_to "Back", root_path, class: "button special scrolly" %>
+			</div>
+		</div>
+	</section>
+
+</body>
+</html>
