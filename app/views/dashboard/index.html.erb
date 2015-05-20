@@ -26,7 +26,7 @@ Template a modified version of Highlights by HTML5 UP
 	<% if params[:search] %>
 	<script type="text/javascript">
 	$(function() {
-		$(document).scrollTop( $("#one").offset().top );
+		$('html, body').animate({scrollTop: $("#one").offset().top }, 2000);
 	});
 	</script>
 	<% end %>
@@ -61,7 +61,7 @@ Template a modified version of Highlights by HTML5 UP
 
 	<script type="text/javascript">
 	$(function() {
-		$(document).scrollTop( $("#two").offset().top );
+		$('html, body').animate({scrollTop: $("#two").offset().top}, 2000);
 	});
 	</script>
 
