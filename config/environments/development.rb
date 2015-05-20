@@ -13,7 +13,7 @@ Rails.application.configure do
 
   # This changed to test custom error messages with Gaffe.
   config.consider_all_requests_local       = false
-  
+
   config.action_controller.perform_caching = false
 
   # Don't care if the mailer can't send.

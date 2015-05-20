@@ -1467,7 +1467,7 @@
          		.container {
          			@include padding($size-padding-tb, $size-padding-lr);
          			background: transparentize($color-bg, 0.05);
-         			box-shadow: inset 0 1px 0 0 $color-border;
+         		// 	box-shadow: inset 0 1px 0 0 $color-border;
          		}
 
          		footer {

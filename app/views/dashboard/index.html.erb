@@ -20,7 +20,7 @@ Template a modified version of Highlights by HTML5 UP
 			<h1>Orbweaver</h1>
 			<p>Your concert planning resource.</p>
 		</header>
-		<a href="#one" class="goto-next scrolly"></a>
+		<span class="goto-next scrolly" id="arrow-header" data-next="#one"></span>
 	</section>
 
 	<% if params[:search] %>
@@ -39,7 +39,7 @@ Template a modified version of Highlights by HTML5 UP
 				<header class="major">
 					<h2>How</h2>
 				</header>
-				<p>OrbWeaver generates a playlist in your Spotify account for concerts that are happening next week. Not only will you be in the fold on current music, you'll never miss a show.</p>
+				<p>OrbWeaver generates a playlist in your Spotify account for concerts that are happening next week. Not only will you be in the fold on current music, you'll never miss a good show.</p>
 				<%= form_tag "/" %>
 				<%= label_tag :search, "Current City" %>
 				<%= text_field_tag :search, @city %>
@@ -49,9 +49,9 @@ Template a modified version of Highlights by HTML5 UP
 			<p>Playlist for <strong><%= "#{7.days.from_now.strftime("%m/%d")}" %></strong> through <strong><%= "#{14.days.from_now.strftime("%m/%d")}" %></strong></p>
 
 			<% if @spotify_user %>
-			<a href="#two" class="goto-next scrolly">Next</a>
+			<span class="goto-next scrolly" id="arrow-one" data-next="#two">Next</span>
 			<% else %>
-			<a href="#three" class="goto-next scrolly">Next</a>
+			<span class="goto-next scrolly" id="arrow-two" data-next="#three">Next</span>
 			<% end %>
 		</div>
 	</section>
@@ -76,7 +76,7 @@ Template a modified version of Highlights by HTML5 UP
 				<p> <%= image_tag(@spotify_user.images[0]["url"]) %></p>
 				<p>The Orbweaver playlist has been added to your spotify account.</p>
 			</div>
-			<a href="#three" class="goto-next scrolly">Next</a>
+			<span class="goto-next scrolly" id="arrow-two">Next</span>
 		</div>
 	</section>
 <% end %>
@@ -95,7 +95,6 @@ Template a modified version of Highlights by HTML5 UP
 				<p><%= link_to "Info", event["ticket_url"], target: "_blank" %></p>
 				<% end %>
 			</div>
-			<a href="#footer" class="goto-next scrolly">Next</a>
 		</div>
 	</section>
 
@@ -109,7 +108,7 @@ Template a modified version of Highlights by HTML5 UP
 			<li><a href="#" class="icon alt fa-envelope"><span class="label">Email</span></a></li>
 		</ul>  -->
 			<ul class="copyright">
-				<li>&copy; Ty Hyten</li><li>Design Based On: <a href="http://html5up.net">HTML5 UP</a></li>
+				<li>&copy; Ty Hyten</li><li>Design a Modification of: <a href="http://html5up.net">HTML5 UP</a></li>
 			</ul>
 		</footer>
 	</section>
