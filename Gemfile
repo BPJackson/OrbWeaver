@@ -30,6 +30,8 @@ gem 'dotenv-rails', :groups => [:development, :test]
 gem 'faraday'
 # for error handling
 gem 'gaffe'
+# for playlist load spinner
+gem 'spinjs-rails'
 # gem 'bootstrap-sass', '~> 3.3.4'
 # gem 'install_theme'
 
