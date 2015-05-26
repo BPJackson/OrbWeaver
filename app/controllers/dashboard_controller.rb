@@ -37,9 +37,17 @@ class DashboardController < ApplicationController
       @spotify_user.follow(playlist)
       # deletes empty arrays
       all_top_tracks.delete_if {|elem| elem.flatten.empty? }
-      # adds tracks, one at a time, to the newly created Orbweaver playlist
-      all_top_tracks.each do |track|
-        playlist.add_tracks!(track)
+
+      # adds tracks, one batch at a time, to the newly created Orbweaver playlist
+
+      all_top_tracks.flatten!
+
+      playlist.add_tracks!(all_top_tracks[0..99])
+      if all_top_tracks.length > 99
+      playlist.add_tracks!(all_top_tracks[100..199])
+      end
+      if all_top_tracks.length > 199
+        playlist.add_tracks!(all_top_tracks[200..299])
       end
     end
 
