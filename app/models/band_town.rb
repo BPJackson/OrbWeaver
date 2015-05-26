@@ -1,5 +1,5 @@
 class BandTown
-
+  
   def initialize
     @conn = Faraday.new(:url => 'http://api.bandsintown.com') do |faraday|
       faraday.request  :url_encoded
