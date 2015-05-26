@@ -18,6 +18,8 @@ class DashboardController < ApplicationController
     artist_list = @events_array.map do |event|
       event["artists"][0]["name"]
     end
+    # this authenitcates app, should improve rate limits
+    RSpotify.authenticate(ENV['CLIENT_ID'], ENV['CLIENT_SECRET'])
 
     # iterates through each artist and returns an array of RSpotify artist objects. Each RSpotify artist is its own array.
     rspotify_artists_array = artist_list.map do |artist|
@@ -26,7 +28,7 @@ class DashboardController < ApplicationController
     # deletes empty arrays in the entire array
     rspotify_artists_array = rspotify_artists_array.delete_if {|elem| elem.flatten.empty? }
     # all top tracks for all of the RSpotify artists
-    all_top_tracks = rspotify_artists_array.map do |artist|
+      all_top_tracks = rspotify_artists_array.map do |artist|
       artist[0].top_tracks(:US)
     end
 
