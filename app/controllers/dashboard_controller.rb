@@ -2,7 +2,6 @@ class DashboardController < ApplicationController
 
   def index
     # this authenitcates app, should improve rate limits
-    RSpotify.authenticate(ENV['CLIENT_ID'], ENV['CLIENT_SECRET'])
     # checks the incomming params and sets the @city instance variable
     if params[:search]
       @city = params[:search]
@@ -25,6 +24,9 @@ class DashboardController < ApplicationController
         event["artists"][0]["name"]
       end
 
+      @spotify_user = RSpotify::User.new(request.env['omniauth.auth'])
+
+      
       # iterates through each artist and returns an array of RSpotify artist objects. Each RSpotify artist is its own array.
       rspotify_artists_array = artist_list.map do |artist|
         RSpotify::Artist.search("#{artist}", limit: 1, market: "US")
@@ -36,7 +38,12 @@ class DashboardController < ApplicationController
         artist[0].top_tracks(:US)
       end
 
-      @spotify_user = RSpotify::User.new(request.env['omniauth.auth'])
+
+
+
+
+
+
       playlist = @spotify_user.create_playlist!("Orbweaver-Playlist through #{14.days.from_now.strftime("%m/%d")}")
       @spotify_user.follow(playlist)
       # deletes empty arrays
