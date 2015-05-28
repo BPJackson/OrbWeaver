@@ -15,7 +15,7 @@ class SpotifyRequest
     if response.status.to_s.start_with?('20')
       return JSON.parse(response.body)
     end
-    sleep 1
+    sleep 2
     {"artists"=>
   {"href"=>"#",
    "items"=>[],
@@ -35,6 +35,7 @@ class SpotifyRequest
     if response.status.to_s.start_with?('20')
       return JSON.parse(response.body)
     end
+    #adding a longer sleep here (4) seems to have resolved all of the 429 responses that were coming back from Spotify
     sleep 4
     {}
   end
