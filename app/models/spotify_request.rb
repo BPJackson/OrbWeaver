@@ -33,10 +33,10 @@ class SpotifyRequest
       req.headers['Authorization'] = "Bearer #{token}"
     end
     if response.status.to_s.start_with?('20')
-      JSON.parse(response.body)
+      return JSON.parse(response.body)
     end
     sleep 1
-    {}  
+    {}
   end
 
   def create_spotify_playlist(user_id, token)
