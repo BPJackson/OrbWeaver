@@ -35,7 +35,7 @@ class SpotifyRequest
     if response.status.to_s.start_with?('20')
       return JSON.parse(response.body)
     end
-    sleep 1
+    sleep 4
     {}
   end
 
