@@ -27,8 +27,10 @@ class DashboardController < ApplicationController
       # pulls token from hash, to pass as an argument
       user_token = request.env['omniauth.auth']['credentials']['token']
       # feeds artists names into a Spotify artist search, bridging the gap between the Bandsintown and Spotify API's
-      spotify_artists_array = artist_list.map do |artist|
-        sleep 1
+      spotify_artists_array = artist_list.each_with_index.map do |artist, i|
+        if i % 4 == 0
+          sleep 1
+        end
         SpotifyRequest.new().artist_search(artist, user_token)
       end
 
