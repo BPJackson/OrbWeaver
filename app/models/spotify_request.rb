@@ -12,9 +12,10 @@ class SpotifyRequest
       req.url "search?q=#{artist}&limit=1&type=artist"
       req.headers['Authorization'] = "Bearer #{token}"
     end
-    if response.status == 200
+    if response.status.to_s.start_with?('20')
       return JSON.parse(response.body)
     end
+    sleep 1
     {"artists"=>
   {"href"=>"#",
    "items"=>[],
