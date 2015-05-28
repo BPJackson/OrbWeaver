@@ -58,6 +58,7 @@ class DashboardController < ApplicationController
       playlist = SpotifyRequest.new().create_spotify_playlist(@spotify_user.id, user_token)
       # adds tracks to playlist
       split_arrays.each do |track_uri_group|
+        sleep 1
         SpotifyRequest.new().add_spotify_track(playlist["id"], @spotify_user.id, user_token, track_uri_group)
       end
     end
