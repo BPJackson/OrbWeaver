@@ -17,6 +17,7 @@ class DashboardController < ApplicationController
 
     # checks for callback Omniauth hash
     if request.env['omniauth.auth']
+      # spotify_connection = SpotifyRequest.new
       # instantiates new RSpotify User
       @spotify_user = RSpotify::User.new(request.env['omniauth.auth'])
       # converts @events_array to array of names
@@ -27,6 +28,7 @@ class DashboardController < ApplicationController
       user_token = request.env['omniauth.auth']['credentials']['token']
       # feeds artists names into a Spotify artist search, bridging the gap between the Bandsintown and Spotify API's
       spotify_artists_array = artist_list.map do |artist|
+        sleep 1
         SpotifyRequest.new().artist_search(artist, user_token)
       end
 
@@ -57,8 +59,8 @@ class DashboardController < ApplicationController
       # generates a new playlist in @spotify_user's account
       playlist = SpotifyRequest.new().create_spotify_playlist(@spotify_user.id, user_token)
       # adds tracks to playlist
+
       split_arrays.each do |track_uri_group|
-        sleep 1
         SpotifyRequest.new().add_spotify_track(playlist["id"], @spotify_user.id, user_token, track_uri_group)
       end
     end
