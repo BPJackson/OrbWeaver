@@ -49,7 +49,7 @@ class DashboardController < ApplicationController
         spotify_connection.artist_top_tracks(artist, user_token)
       end
       # deletes ["tracks"] with empty values
-      all_top_tracks.delete_if {|x| x["tracks"].empty? }
+      all_top_tracks.delete_if {|x| x["tracks"].blank? }
       # creates collection of all URI's for the top tracks
       track_uris = all_top_tracks.map do |artist_track_group|
       	artist_track_group["tracks"].map do |track|
