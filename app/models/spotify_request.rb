@@ -1,4 +1,4 @@
-class SpotifySearch
+class SpotifyRequest
   def initialize
     @conn = Faraday.new(:url => 'https://api.spotify.com/v1/') do |faraday|
       faraday.request  :url_encoded
@@ -10,7 +10,6 @@ class SpotifySearch
   def artist_search(artist, token)
     response = @conn.get do |req|
       req.url "search?q=#{artist}&limit=1&type=artist"
-      # req.params['app_id'] = ENV["BANDS_ID"]
       req.headers['Authorization'] = "Bearer #{token}"
     end
     JSON.parse(response.body)
@@ -28,7 +27,6 @@ class SpotifySearch
   def create_spotify_playlist(user_id, token)
     response = @conn.post do |req|
       req.url "users/#{user_id}/playlists"
-      # req.params['app_id'] = ENV["BANDS_ID"]
       req.headers['Authorization'] = "Bearer #{token}"
       req.body = '{ "name": "Orbweaver-Playlist", "public": true }'
     end
@@ -39,11 +37,9 @@ class SpotifySearch
     string = uris.join(',')
     response = @conn.post do |req|
       req.url "users/#{user_id}/playlists/#{playlist_id}/tracks"
-      # req.params['app_id'] = ENV["BANDS_ID"]
       req.headers['Authorization'] = "Bearer #{token}"
       req.params['uris'] = "#{string}"
     end
   end
-
-
+  
 end
