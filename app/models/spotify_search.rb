@@ -22,7 +22,7 @@ class SpotifySearch
       req.params['country'] = "US"
       req.headers['Authorization'] = "Bearer #{token}"
     end
-    events = JSON.parse(response.body)
+    JSON.parse(response.body)
   end
 
   def create_spotify_playlist(user_id, token)
@@ -32,18 +32,17 @@ class SpotifySearch
       req.headers['Authorization'] = "Bearer #{token}"
       req.body = '{ "name": "Orbweaver-Playlist", "public": true }'
     end
-    events = JSON.parse(response.body)
+    JSON.parse(response.body)
   end
 
   def add_spotify_track(playlist_id, user_id, token, uris)
-    string = uris.join(', ')
+    string = uris.join(',')
     response = @conn.post do |req|
       req.url "users/#{user_id}/playlists/#{playlist_id}/tracks"
       # req.params['app_id'] = ENV["BANDS_ID"]
       req.headers['Authorization'] = "Bearer #{token}"
-      req.params['uri'] = "#{string}"
+      req.params['uris'] = "#{string}"
     end
-    events = JSON.parse(response.body)
   end
 
 

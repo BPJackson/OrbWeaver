@@ -45,20 +45,38 @@ class DashboardController < ApplicationController
 
       all_top_tracks = artist_ids.map do |artist|
         SpotifySearch.new().artist_top_tracks(artist, user_token)
-      end
 
+      end
 
       all_top_tracks.delete_if {|x| x["tracks"].empty? }
 
-      uri_list = all_top_tracks.map do |track|
-        track["tracks"][0]["album"]["uri"]
+      track_uris = all_top_tracks.map do |artist_track_group|
+      	artist_track_group["tracks"].map do |track|
+      		 track["uri"]
+      	end
       end
 
-      binding.pry
+
+
+      # all_top_tracks.delete_if {|x| x["tracks"].empty? }
+
+      # uri_list = all_top_tracks.map do |track|
+      #   track["tracks"]
+      # end
+
+      # next_track_list = uri_list.map do |uri|
+      #   uri["uri"]
+      # end
+
+      track_uris.flatten!
+      split_arrays = track_uris.each_slice(89).to_a
 
       playlist = SpotifySearch.new().create_spotify_playlist(@spotify_user.id, user_token)
 
-      SpotifySearch.new().add_spotify_track(playlist["id"], @spotify_user.id, user_token, uri_list)
+      split_arrays.each do |track_uri_group|
+        SpotifySearch.new().add_spotify_track(playlist["id"], @spotify_user.id, user_token, track_uri_group)
+
+      end
 
 
       # deletes empty arrays in the entire array
