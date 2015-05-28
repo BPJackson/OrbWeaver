@@ -29,7 +29,7 @@ class DashboardController < ApplicationController
       # feeds artists names into a Spotify artist search, bridging the gap between the Bandsintown and Spotify API's
       spotify_artists_array = artist_list.each_with_index.map do |artist, i|
         if i % 4 == 0
-          sleep 1
+          sleep 0.5
         end
         SpotifyRequest.new().artist_search(artist, user_token)
       end
