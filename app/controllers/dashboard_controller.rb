@@ -39,7 +39,7 @@ class DashboardController < ApplicationController
       # pops off the first index in the spotify_artists_array, which is junk
       spotify_artists_array.shift
       # deletes hashes with ["items"] that have empties
-      spotify_artists_array.delete_if {|x| x["artists"]["items"].empty? }
+      spotify_artists_array.delete_if {|x| x["artists"]["items"].blank? }
       # grabs artist ID's to feed to artist_top_tracks method
       artist_ids = spotify_artists_array.map do |artist|
         artist["artists"]["items"][0]["id"]
