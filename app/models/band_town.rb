@@ -1,5 +1,5 @@
 class BandTown
-  
+
   def initialize
     @conn = Faraday.new(:url => 'http://api.bandsintown.com') do |faraday|
       faraday.request  :url_encoded
@@ -10,7 +10,7 @@ class BandTown
 
   def usa_events(location)
     response = @conn.get do |req|
-      req.url "/events/search?location=#{location}&radius=40&date=2015-05-19&per_page=50&format=json"
+      req.url "/events/search?location=#{location}&radius=40&date=2015-06-08&per_page=15&format=json"
       req.params['app_id'] = ENV["BANDS_ID"]
     end
     events = JSON.parse(response.body)
