@@ -10,7 +10,8 @@ class BandTown
 
   def usa_events(location)
     response = @conn.get do |req|
-      req.url "/events/search?location=#{location}&radius=40&date=#{14.days.from_now.strftime("%Y-%m-%d")}&per_page=25&format=json"
+      # req.url "/events/search?location=#{location}&radius=40&date=#{14.days.from_now.strftime("%Y-%m-%d")}&per_page=25&format=json"
+      req.url "/events/search?location=#{location}&radius=40&date=#{14.days.from_now.strftime("%Y-%m-%d")}&per_page=50&format=json"
       req.params['app_id'] = ENV["BANDS_ID"]
     end
     events = JSON.parse(response.body)
