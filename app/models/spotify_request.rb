@@ -12,7 +12,17 @@ class SpotifyRequest
       req.url "search?q=#{artist}&limit=1&type=artist"
       req.headers['Authorization'] = "Bearer #{token}"
     end
-    JSON.parse(response.body)
+    if response.status == 200
+      return JSON.parse(response.body)
+    end
+    {"artists"=>
+  {"href"=>"#",
+   "items"=>[],
+   "limit"=>1,
+   "next"=>nil,
+   "offset"=>0,
+   "previous"=>nil,
+   "total"=>0}}
   end
 
   def artist_top_tracks(artist_id, token)
@@ -41,5 +51,5 @@ class SpotifyRequest
       req.params['uris'] = "#{string}"
     end
   end
-  
+
 end

@@ -27,11 +27,13 @@ class DashboardController < ApplicationController
       # pulls token from hash, to pass as an argument
       user_token = request.env['omniauth.auth']['credentials']['token']
       # feeds artists names into a Spotify artist search, bridging the gap between the Bandsintown and Spotify API's
-      spotify_artists_array = artist_list.each_with_index.map do |artist, i|
-        # if i % 4 == 0
-          sleep 0.5
-        # end
-        spotify_connection.artist_search(artist, user_token)
+      artist_chunks = artist_list.each_slice(10).to_a
+
+      spotify_artists_array = []
+      artist_chunks.each do |chunk|
+        chunk.each do |artist|
+          spotify_artists_array << spotify_connection.artist_search(artist, user_token)
+        end
       end
 
       # pops off the first index in the spotify_artists_array, which is junk
