@@ -6,11 +6,6 @@ App built in Ruby on Rails that generates a Spotify playlist containing the top 
 
 ----
 
-It is recommended that you login via Facebook after the redirect, as there is currently a bug with the Spotify OAuth.
-
-
-
-
 Built by Ty Hyten
 www.linkedin.com/in/tyhyten
 @tyhyten
