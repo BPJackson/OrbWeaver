@@ -46,7 +46,7 @@ Template a modified version of Highlights by HTML5 UP
 				<%= submit_tag "Update City", id: "update-city-btn" %>
 			</div>
 			<span id="generate-btn"><%= link_to 'Generate Playlist', spotify_auth_path(search: @city), class: "button special scrolly" %></span>
-			<p>Playlist for <strong><%= "#{7.days.from_now.strftime("%m/%d")}" %></strong> through <strong><%= "#{14.days.from_now.strftime("%m/%d")}" %></strong></p>
+			<p>Playlist for <strong><%= "#{DateTime.now.next_week.strftime("%m/%d")}" %></strong> through <strong><%= "#{DateTime.now.next_week.next_day(6).strftime("%m/%d")}" %></strong></p>
 			<div id="spinnerjs"></div>
 
 			<% if @spotify_user %>
