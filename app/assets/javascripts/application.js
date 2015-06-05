@@ -34,7 +34,7 @@ $(function(){
     var target = document.getElementById('spinnerjs');
     var spinner = new Spinner(opts).spin(target);
   });
-  // update city load animation
+  //  city load animation
   $("#update-city-btn").on('click', function(e){
     var opts = {
       lines: 14, // The number of lines to draw
