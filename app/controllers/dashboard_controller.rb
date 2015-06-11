@@ -20,9 +20,11 @@ class DashboardController < ApplicationController
       spotify_connection = SpotifyRequest.new
       # instantiates new RSpotify User
       @spotify_user = RSpotify::User.new(request.env['omniauth.auth'])
-      # converts @events_array to array of names
+      # converts @events_array to array of names, using makeshift conditional to account for empty artist data until I figure out a cleaner way
       artist_list = @events_array.map do |event|
-        event["artists"][0]["name"]
+        unless event["artists"] == []
+          event["artists"][0]["name"]
+        end
       end
       # pulls token from hash, to pass as an argument
       user_token = request.env['omniauth.auth']['credentials']['token']

@@ -90,10 +90,13 @@ Template a modified version of Highlights by HTML5 UP
 					<h2>Artists</h2>
 					<p>These shows are happening in <%= @city %> next week!</p>
 				</header>
+				<!-- using makeshift conditional to account for empty artist data until I figure out a cleaner way -->
 				<% @events_array.map do |event| %>
+				<% unless event["artists"] == [] %>
 				<p><h3><%= event["artists"][0]["name"] %></h3></p>
 				<p class="venue"><%= event["venue"]["name"] %> </p>
 				<p><%= link_to "Tickets", event["ticket_url"], target: "_blank" %></p>
+				<% end %>
 				<% end %>
 				<span class="goto-next scrolly flip" data-next="#three">Next</span>
 			</div>
